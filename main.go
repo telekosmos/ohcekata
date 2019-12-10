@@ -11,15 +11,21 @@ import (
 func executor(in string) {
 	in = strings.TrimSpace(in)
 
-	// var method, body string
 	blocks := strings.Split(in, " ")
-	switch blocks[0] {
-	case "exit":
+	input := blocks[0]
+	switch input {
+	case "exit!":
 		fmt.Println("Bye!")
 		os.Exit(0)
-	}
 
-	fmt.Println("We go on...")
+	default:
+		rev := reverse(input)
+		palindrome := isPalindrome(input)
+		fmt.Printf("%s\n", rev)
+		if palindrome {
+			fmt.Println("Nice word!")
+		}
+	}
 }
 
 func completer(t prompt.Document) []prompt.Suggest {
@@ -36,7 +42,7 @@ func main() {
 		promptName = "noname"
 	}
 
-	fmt.Printf("Hola %s!", promptName)
+	fmt.Printf("Hola %s!\nType 'exit!' to quit\n", promptName)
 	p := prompt.New(
 		executor,
 		completer,
