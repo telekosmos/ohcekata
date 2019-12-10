@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"testing"
+	"time"
 )
 
 func TestIsNotPalindrome(t *testing.T) {
@@ -54,14 +56,31 @@ func TestReversePalindrome(t *testing.T) {
 	}
 }
 
-func TestAnswerMorning(t *testing.T) {
-
+func TestMorning(t *testing.T) {
+	sample := time.Date(0, 0, 0, 10, 15, 30, 918273645, time.UTC)
+	ans := isMorning(sample)
+	part := partOfTheDay(sample)
+	fmt.Println(part)
+	if ans != true || part != "morning" {
+		t.Errorf("Time %s is not morning", sample.Local())
+	}
 }
 
-func TestAnswerAfternoon(t *testing.T) {
-
+func TestAfternoon(t *testing.T) {
+	sample := time.Date(0, 0, 0, 19, 15, 30, 918273645, time.UTC)
+	ans := isAfternoon(sample)
+	part := partOfTheDay(sample)
+	fmt.Println(part)
+	if ans != true || part != "afternoon" {
+		t.Errorf("Time %s is not afternoon", sample.Local())
+	}
 }
 
-func TestAnswerEvening(t *testing.T) {
-
+func TestEvening(t *testing.T) {
+	sample := time.Date(0, 0, 0, 23, 15, 30, 918273645, time.UTC)
+	ans := isEvening(sample)
+	part := partOfTheDay(sample)
+	if ans != true || part != "evening" {
+		t.Errorf("Time %s is not evening", sample.Local())
+	}
 }

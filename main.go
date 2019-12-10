@@ -36,6 +36,7 @@ func main() {
 		promptName = "noname"
 	}
 
+	fmt.Printf("Hola %s!", promptName)
 	p := prompt.New(
 		executor,
 		completer,
